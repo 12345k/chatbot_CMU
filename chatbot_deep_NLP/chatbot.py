@@ -102,6 +102,62 @@ for word,count in word2count.items():
         word_number +=1
 
 
+# Adding the last tokens to these two dict
+tokens = ['<PAD>','<EOS>','<OUT>','<SOS>']
+for token in tokens:
+    questionwords2int[token] =len(questionwords2int)+1
+for token in tokens:
+    answerwords2int[token] =len(answerwords2int)+1
+    
+# Inverse dictinoary of answersword2int 
+answerint2words = {w_i:w for w,w_i in answerwords2int.items()}
+
+# Adding end of string to every answer
+for i in range(len(clean_answer)):
+    clean_answer[i] += ' <EOS>'
+
+# Translating all the question and answer to integer 
+
+question_into_int = []
+for question in clean_question:
+    ints=[]
+    for word in question.split():
+        if word not in questionwords2int:
+            ints.append(questionwords2int['<OUT>'])
+        else:
+            ints.append(questionwords2int[word])
+    question_into_int.append(ints)
+    
+
+answer_into_int = []
+for answer in clean_answer:
+    ints=[]
+    for word in answer.split():
+        if word not in answerwords2int:
+            ints.append(answerwords2int['<OUT>'])
+        else:
+            ints.append(answerwords2int[word])
+    answer_into_int.append(ints)
+
+# Sorting question and answer by length of question
+
+sorted_clean_question =[]
+sorted_clean_answer =[]
+for length in range(1,25+1):
+    for i in enumerate(question_into_int):
+        if len(i[1]) == length:
+            sorted_clean_question.append(question_into_int[i[0]])
+            sorted_clean_answer.append(answer_into_int[i[0]])
+
+
+
+
+
+
+
+
+
+
 
 
 
