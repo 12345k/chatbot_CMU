@@ -151,7 +151,25 @@ for length in range(1,25+1):
 
 
 
+# Sequence to sequence model
+            
 
+# Creating placeholder function
+def model_input():
+    inputs = tf.placeholder(tf.int32, [None,None], name = 'input')
+    targets = tf.placeholder(tf.int32, [None,None], name = 'target')
+    lr = tf.placeholder(tf.float32,  name = 'learning_rate')
+    keep_prob = tf.placeholder(tf.float32, name = 'keep_prob')
+    
+    return inputs,targets,lr,keep_prob
+    
+# Preprocessing the target
+def preprocess_targets(targets,word2int,batch_size):
+    left_side = tf.fill([batch_size,1],word2int['<SOS>'])
+    right_side = tf.strided_slice(targets,[0,0],[batch_size,-1],[1,1])
+    preprocessed_targets = tf.concat([left_side,right_side],1)
+    
+    return preprocess_targets               
 
 
 
