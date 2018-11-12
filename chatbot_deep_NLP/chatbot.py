@@ -171,7 +171,7 @@ def preprocess_targets(targets,word2int,batch_size):
     
     return preprocess_targets               
 
-
+# creating the Encoder RNN Layer
 
 
 
