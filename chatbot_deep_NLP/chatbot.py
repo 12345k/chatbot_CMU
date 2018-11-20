@@ -294,6 +294,20 @@ def seq2seq_model(inputs, targets, keep_prob, batch_size, sequence_length, answe
     return training_predictions,test_predictions
 
 
+# Training the seq2seq model
+    
+# setting the hyperparameters
+    
+epochs = 100
+batch_size =64
+rnn_size= 512
+num_layes=3
+encoding_embedding_size=51
+decoding_embedding_size=51
+learning_rate =0.01
+learning_rate_decay=0.9
+min_learning_rate =0.0001
+keep_Probability =0.5
 
 
 
