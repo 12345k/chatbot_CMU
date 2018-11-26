@@ -309,9 +309,18 @@ learning_rate_decay=0.9
 min_learning_rate =0.0001
 keep_Probability =0.5
 
+# Defining a session
 
+tf.reset_default_graph()
+session = tf.InteractiveSession()
 
+#Loading the model inputs
 
+inputs,targets, lr, keep_prob = model_input()
+
+# Setting the sequence length
+
+sequence_length =  tf.placeholder_with_default(25, None, name='sequence_length')
 
 
 
